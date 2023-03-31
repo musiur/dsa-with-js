@@ -1,35 +1,38 @@
-const array = [2, 3, 4, 5, 6, 7];
-let arr = array;
-
-const target = 3;
-let n = arr.length;
-while (n !== 1) {
-  n = Math.floor(n / 2);
-  console.log(n)
+const binarySearch = (arr, target) => {
+  let leftIndex = 0;
+  let rightIndex = arr.length - 1;
   
-  
-  if (target === arr[n]) {
-    console.log("yes", n, arr[n])
-    return arr[n];
-  } else if (target > arr[n]) {
-    const arrRight = arr.slice(n + 1, arr.length);
-    console.log(arrRight)
-    if (arrRight.length > 1) {
-      arr = arrRight;
-      n = arrRight.length;
-    } else {
-      return arrRight[0];
-    }
-  } else {
-    const arrLeft = arr.slice(0, n);arr = arrLeft;
-    if (arrLeft.length > 1) {
-      n = arrLeft.length;
-    } else {
-      return arrLeft[0];
+  while(rightIndex - leftIndex !== -1){
+    let middleIndex = Math.floor((rightIndex + leftIndex) / 2);
+    if(arr[middleIndex] === target){
+      return middleIndex;
+    }else if(arr[leftIndex] === target){
+      return leftIndex;
+    }else if(arr[rightIndex] === target){
+      return rightIndex;
+    }else{
+      if(arr[middleIndex] > target){
+        rightIndex = middleIndex - 1;
+        if(rightIndex <= -1){
+          return -1;
+        }
+      }else if(arr[middleIndex] < target){
+        leftIndex = middleIndex + 1;
+        if(leftIndex >= arr.length){
+          return -1;
+        }
+      }else{
+        return -1;
+      }
     }
   }
-
-  console.log(n, arr);
 }
 
-// O(n)
+console.log(binarySearch([1,2,3,4,5,6], 1))
+console.log(binarySearch([1,2,3,4,5,6], 2))
+console.log(binarySearch([1,2,3,4,5,6], 3))
+console.log(binarySearch([1,2,3,4,5,6], 4))
+console.log(binarySearch([1,2,3,4,5,6], 5))
+console.log(binarySearch([1,2,3,4,5,6], 6))
+console.log(binarySearch([1,2,3,4,5,6], 90))
+console.log(binarySearch([1,2,3,4,5,6], -10))
