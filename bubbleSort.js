@@ -40,3 +40,5 @@ const bubbleSort = (arr) => {
 
 console.log(bubbleSort([2, -6, -4, -1, 8]))
 console.log(bubbleSort([-6, 20, 0, 2, -1, 8]))
+
+// Time Complexity of this program is O(n)
