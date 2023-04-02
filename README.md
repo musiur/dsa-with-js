@@ -1,1 +1,1 @@
-# dsa-with-js
+# dsa-with-javascript
